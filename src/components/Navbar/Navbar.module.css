@@ -1,12 +1,15 @@
 .nav {
   grid-area: n;
-  background-color: hotpink;
+  background:linear-gradient(180deg, rgb(216, 205, 104), rgb(49, 49, 53));
+  padding: 20px;
   }
 
-.item {
+.item a{
   color:white;
+  text-decoration: none;
 }
 
-.item_active {
-  color:rgb(236, 6, 83);
+.item a.activeLink {
+  color:goldenrod;
+
 }
