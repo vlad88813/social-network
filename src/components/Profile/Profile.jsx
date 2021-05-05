@@ -7,7 +7,7 @@ import MyPosts from './MyPosts/MyPosts';
 const Profile = (props) => {
   return <div>
        <Profile_Info/>
-        <MyPosts postData={props.postData}/>
+        <MyPosts postData={props.state.postData}/>
   </div>
 };
 
