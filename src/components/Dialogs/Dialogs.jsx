@@ -15,6 +15,12 @@ import Message from './Message/Message';
     let messagesElements = props.state.messages
     .map(m => <Message message={m.Message}/>)
 
+    let RefMessage = React.createRef();
+    let AddMessage =() => {
+      let text = RefMessage.current.value;
+      alert(text)
+    }
+
     return (
      <div className={Dialogs_style.dialogs}>
         <div className={Dialogs_style.dialogsItems}>
@@ -22,6 +28,8 @@ import Message from './Message/Message';
         </div>
         <div className={Dialogs_style.messages}>
             {messagesElements}
+            <textarea ref={ RefMessage }></textarea>
+            <button onClick={ AddMessage }>Add Message</button>
         </div>
     </div>
     )
