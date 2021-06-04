@@ -1,5 +1,4 @@
 import React from 'react';
-import { sendMessageCreator, updateNewMessageBodyCreator } from '../../redux/dialogs-reducer';
 import DialogItem from './DialogItem/Dialogs_item';
 import Dialogs_style from'./Dialogs.module.css';
 import Message from './Message/Message';
@@ -8,31 +7,33 @@ import Message from './Message/Message';
     <Message />;
 
     const Dialogs = (props) => {
-  
-    let dialogsElements = props.store.getState().MessagesPage.dialogsData
-    .map(d => <DialogItem name= {d.name} id= {d.id} img={d.img}/>)
-
-
-    let messagesElements = props.store.getState().MessagesPage.messages
-    .map(m => <Message message={m.Message}/>)
     
-    let newMessageBody = props.store.getState().MessagesPage.newMessageBody;
+
+    let state = props.MessagesPage;
+  
+    let dialogsElements = state.dialogsData
+    .map(d => <DialogItem name= {d.name} key= {d.id} id= {d.id} img={d.img}/>)
+
+
+    let messagesElements = state.messages
+    .map(m => <Message message={m.Message} key= {m.id}/>)
+    
+    let newMessageBody = props.MessagesPage.newMessageBody;
+    
 
 
     let onSendMessageClick = () => {
-      props.store.dispatch(sendMessageCreator()) 
+      if (newMessageBody!=''){
+      props.sendMessageCreator();
+    } 
     } 
     let onNewMessageChange = (e) => {
+  
       //функция для работы FLUX архитектуры. она позволит изменить '' 
       let body = e.target.value; //стучим в собитие Е а там таргет и оттуда достаем значение
-      props.store.dispatch(updateNewMessageBodyCreator(body)) 
+      props.updateNewMessageBodyCreator(body);
     }
 
-    // let RefMessage = React.createRef();
-    // let AddMessage =() => {
-    //   let text = RefMessage.current.value;
-    //   alert(text)
-    // }
 
     return (
      <div className={Dialogs_style.dialogs}>

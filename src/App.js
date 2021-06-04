@@ -8,6 +8,9 @@ import Profile from './components/Profile/Profile';
 import News from './components/News/News';
 import Music from './components/Music/Music';
 import Setings from './components/Setings/Setings';
+import DialogsContainer from './components/Dialogs/DialogsContainer';
+import UsersContainer from './components/users/UsersContainer';
+
 
 
 const App = (props) => {
@@ -20,15 +23,15 @@ const App = (props) => {
       <div className='app-wrapper-content'>
         <Route path='/profile' render= {() => 
         <Profile 
-        state={props.state.ProfilePage} 
-        dispatch= {props.dispatch}/>}/>
+        store={props.store}/>}/>
         <Route path= '/dialogs' render= {() => 
-        <Dialogs 
-        state={props.state.MessagesPage}
+        <DialogsContainer
         store = {props.store}/>}/>
         <Route path='/news' render= {()=><News />}/>
         <Route path='/music' component={()=><Music />}/>
         <Route path='/settings' component={()=><Setings />}/>
+        <Route path='/users' render={()=><UsersContainer/>}/>
+        
  
       </div>
     </div>

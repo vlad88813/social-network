@@ -19,16 +19,28 @@ let initialState = {
     // img:'https://tec-sense.com/wp-content/uploads/2019/09/avtar-man.png',         
   }
 
+
 const dialogsReducer = (state = initialState, action) => {
+    let stateCopy = {...state};
+    
+
     switch (action.type){
         case UPDATE_NEW_MESSAGE_BODY:
-            state.newMessageBody = action.body;
-            return state;
-        case SEND_MESSAGE:
-            let body = state.newMessageBody; 
-        state.newMessageBody = '';
-        state.messages.push({id: 6, Message: body})
-            return state;
+            return {
+              ...state,
+              newMessageBody: action.body
+            }
+
+        case SEND_MESSAGE: {
+            let body = state.newMessageBody;
+            stateCopy.messages = [...state.messages]
+            console.log(stateCopy)
+            stateCopy.messages.push({id: 6, Message: body})
+            stateCopy.newMessageBody = '';
+            // return Object.assign({},stateCopy,{newMessageBody:action.body});
+            
+            return stateCopy;
+        } 
         default: 
             return state;
     }
