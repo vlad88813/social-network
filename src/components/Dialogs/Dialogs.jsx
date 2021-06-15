@@ -8,7 +8,7 @@ import Message from './Message/Message';
 
     const Dialogs = (props) => {
     
-
+  
     let state = props.MessagesPage;
   
     let dialogsElements = state.dialogsData
@@ -28,10 +28,10 @@ import Message from './Message/Message';
     } 
     } 
     let onNewMessageChange = (e) => {
-  
+      
       //функция для работы FLUX архитектуры. она позволит изменить '' 
       let body = e.target.value; //стучим в собитие Е а там таргет и оттуда достаем значение
-      props.updateNewMessageBodyCreator(body);
+      props.updateNewMessageBodyCreatorKEY(body);
     }
 
 

@@ -10,7 +10,7 @@ let mapStateToProps = (state) => {
 
 let mapDispatchToProps = (dispatch) =>{
   return {
-    updateNewMessageBodyCreator: (body) => {
+    updateNewMessageBodyCreatorKEY: (body) => {
       dispatch(updateNewMessageBodyCreator(body))
     },
     sendMessageCreator: () => {
@@ -20,7 +20,6 @@ let mapDispatchToProps = (dispatch) =>{
 };
 
 let DialogsContainer = connect(mapStateToProps,mapDispatchToProps)(Dialogs);
-
 
 
 export default DialogsContainer;
