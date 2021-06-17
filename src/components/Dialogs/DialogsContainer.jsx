@@ -8,18 +8,21 @@ let mapStateToProps = (state) => {
   }
 };
 
-let mapDispatchToProps = (dispatch) =>{
-  return {
-    updateNewMessageBodyCreatorKEY: (body) => {
-      dispatch(updateNewMessageBodyCreator(body))
-    },
-    sendMessageCreator: () => {
-      dispatch(sendMessageCreator())
-    }
-  }
-};
+// let mapDispatchToProps = (dispatch) =>{
+//   return {
+//     updateNewMessageBodyCreatorKEY: (body) => {
+//       dispatch(updateNewMessageBodyCreator(body))
+//     },
+//     sendMessageCreator: () => {
+//       dispatch(sendMessageCreator())
+//     }
+//   }
+// };
 
-let DialogsContainer = connect(mapStateToProps,mapDispatchToProps)(Dialogs);
+let DialogsContainer = connect(mapStateToProps,{
+  updateNewMessageBodyCreatorKEY:updateNewMessageBodyCreator,
+  sendMessageCreator,
+})(Dialogs);
 
 
 export default DialogsContainer;

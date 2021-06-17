@@ -3,13 +3,15 @@ const UN_FOLLOW = 'UN_FOLLOW';
 const SET_USERS = 'SET_USERS';
 const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE';
 const SET_USER_TOTAL_COUNT = 'SET_USER_TOTAL_COUNT';
+const FETCHING = 'FETCHING';
 
 
 let initialState =  {
     users: [],
     pageSize: 5,
     totalCount: 0,
-    currentPage: 1
+    currentPage: 1,
+    isFetching: false
     
   };
 
@@ -50,17 +52,21 @@ const UsersReducer = (state = initialState, action) => {
 
             return {...state, totalCount: action.count}
         }
+        case FETCHING: {
+            return {...state, isFetching: action.isFetching}
+        }
         default: 
             return state;
 
     }
 }
 
-export const followAC = (userId) => ({ type: FOLLOW, userId});
-export const unfollowAC = (userId) => ({ type: UN_FOLLOW, userId});
-export const setUsersAC = (users) => ({ type: SET_USERS, users});
-export const setCurrentPageAC = (currentPage) => ({ type: SET_CURRENT_PAGE, currentPage});
-export const setUsersTotalCountAC = (totalCount) => ({ type: SET_USER_TOTAL_COUNT, count: totalCount })
+export const follow = (userId) => ({ type: FOLLOW, userId});
+export const unfollow = (userId) => ({ type: UN_FOLLOW, userId});
+export const setUsers = (users) => ({ type: SET_USERS, users});
+export const setCurrentPage = (currentPage) => ({ type: SET_CURRENT_PAGE, currentPage});
+export const setTotalUsersCount = (totalCount) => ({ type: SET_USER_TOTAL_COUNT, count: totalCount });
+export const setIsFetching = (isFetching) => ({type:FETCHING, isFetching});
 
 export default UsersReducer;
 //профильпейдж удалил, т.к функция сразу даст что надо
