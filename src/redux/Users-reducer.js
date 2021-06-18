@@ -8,7 +8,7 @@ const FETCHING = 'FETCHING';
 
 let initialState =  {
     users: [],
-    pageSize: 5,
+    pageSize: 80,
     totalCount: 0,
     currentPage: 1,
     isFetching: false

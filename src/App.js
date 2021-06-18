@@ -20,16 +20,21 @@ const App = (props) => {
       <Navbar />
       {/* <Profile /> */}
       <div className='app-wrapper-content'>
-        <Route path='/profile' render= {() => 
-        <ProfileContainer 
-        store={props.store}/>}/>
-        <Route path= '/dialogs' render= {() => 
-        <DialogsContainer
-        store = {props.store}/>}/>
+
+        <Route 
+        path='/profile/:userID?' 
+        render= {() => <ProfileContainer store={props.store}/>}/>
+
+        <Route 
+        path= '/dialogs' 
+        render= {() => <DialogsContainer store = {props.store}/>}/>
+
+        <Route path='/users' render={()=><UsersContainer/>}/>
+
         <Route path='/news' render= {()=><News />}/>
         <Route path='/music' component={()=><Music />}/>
         <Route path='/settings' component={()=><Setings />}/>
-        <Route path='/users' render={()=><UsersContainer/>}/>
+
         
  
       </div>
