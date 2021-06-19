@@ -6,4 +6,7 @@
 .header img {
  width: 188px
 }
- 
+.login {
+  float:right;
+  color:white;
+}
