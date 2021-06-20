@@ -8,7 +8,7 @@ const FETCHING = 'FETCHING';
 
 let initialState =  {
     users: [],
-    pageSize: 80,
+    pageSize: 50,
     totalCount: 0,
     currentPage: 1,
     isFetching: false
@@ -22,7 +22,7 @@ const UsersReducer = (state = initialState, action) => {
         case FOLLOW:
             let newUsers = state.users.map(i => {
                 if (i.id === action.userId) {
-                    return {...i, fallowed: true }
+                    return {...i, followed: true }
                 } 
                 return i;
             })
@@ -36,7 +36,7 @@ const UsersReducer = (state = initialState, action) => {
                 ...state,
                 users: state.users.map(i => {
                     if (i.id === action.userId){
-                        return {...i, fallowed: false }
+                        return {...i, followed: false }
                     }
                     return i;
                 })

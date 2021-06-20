@@ -5,6 +5,7 @@ import { follow, setCurrentPage, setUsers, unfollow, setTotalUsersCount, setIsFe
 import UsersRENDER from './UsersRENDER';
 // import PreLoader from '../../assets/img/loader.gif';
 import Loader from '../loader/loader_1';
+import { getUsers } from '../../api/api';
 
 
 //так как connect делает контейнер, то мы перекинули и сюда нашу глязную компоненту (классовую) для выполнения запросов
@@ -16,8 +17,8 @@ class UsersContainer extends React.Component{
 
         componentDidMount() {
             this.props.setIsFetching(true);
-            axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`)
-            .then(response => {
+            
+            getUsers(this.props.currentPage, this.props.pageSize).then(response => {
                 this.props.setIsFetching(false);
                 this.props.setUsers(response.data.items);
                 this.props.setTotalUsersCount(response.data.totalCount);
@@ -30,8 +31,8 @@ class UsersContainer extends React.Component{
         onPageChanged = (currentPage) => {
             this.props.setCurrentPage(currentPage);
             this.props.setIsFetching(true);
-            axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`)
-            .then(response => {
+            
+            getUsers(currentPage,this.props.pageSize).then(response => {
                 
                 this.props.setUsers(response.data.items);
                 this.props.setIsFetching(false);
