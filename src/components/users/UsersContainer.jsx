@@ -1,11 +1,10 @@
 import { connect } from 'react-redux';
 import React from 'react';
-import * as axios from 'axios';
 import { follow, setCurrentPage, setUsers, unfollow, setTotalUsersCount, setIsFetching } from '../../redux/Users-reducer';
 import UsersRENDER from './UsersRENDER';
 // import PreLoader from '../../assets/img/loader.gif';
 import Loader from '../loader/loader_1';
-import { getUsers } from '../../api/api';
+import { userAPI } from '../../api/api';
 
 
 //так как connect делает контейнер, то мы перекинули и сюда нашу глязную компоненту (классовую) для выполнения запросов
@@ -18,10 +17,11 @@ class UsersContainer extends React.Component{
         componentDidMount() {
             this.props.setIsFetching(true);
             
-            getUsers(this.props.currentPage, this.props.pageSize).then(response => {
+            userAPI.getUsers(this.props.currentPage, this.props.pageSize).then(data => {
+                
                 this.props.setIsFetching(false);
-                this.props.setUsers(response.data.items);
-                this.props.setTotalUsersCount(response.data.totalCount);
+                this.props.setUsers(data.items);
+                this.props.setTotalUsersCount(data.totalCount);
                     
             });
         
@@ -32,9 +32,9 @@ class UsersContainer extends React.Component{
             this.props.setCurrentPage(currentPage);
             this.props.setIsFetching(true);
             
-            getUsers(currentPage,this.props.pageSize).then(response => {
+            userAPI.getUsers(currentPage,this.props.pageSize).then(data => {
                 
-                this.props.setUsers(response.data.items);
+                this.props.setUsers(data.items);
                 this.props.setIsFetching(false);
                 
                     
