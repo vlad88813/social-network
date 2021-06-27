@@ -4,6 +4,7 @@ const SET_USERS = 'SET_USERS';
 const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE';
 const SET_USER_TOTAL_COUNT = 'SET_USER_TOTAL_COUNT';
 const FETCHING = 'FETCHING';
+const DISABLED = 'DISABLED';
 
 
 let initialState =  {
@@ -11,8 +12,8 @@ let initialState =  {
     pageSize: 50,
     totalCount: 0,
     currentPage: 1,
-    isFetching: false
-    
+    isFetching: false,
+    disabledButton: []
   };
 
 const UsersReducer = (state = initialState, action) => {
@@ -55,6 +56,13 @@ const UsersReducer = (state = initialState, action) => {
         case FETCHING: {
             return {...state, isFetching: action.isFetching}
         }
+        case DISABLED: {
+            return {...state, 
+                disabledButton: action.isFetchingNew 
+            ? [...state.disabledButton, action.userId]
+            : state.disabledButton.filter(id => id != action.userId)
+            }
+        }
         default: 
             return state;
 
@@ -67,6 +75,8 @@ export const setUsers = (users) => ({ type: SET_USERS, users});
 export const setCurrentPage = (currentPage) => ({ type: SET_CURRENT_PAGE, currentPage});
 export const setTotalUsersCount = (totalCount) => ({ type: SET_USER_TOTAL_COUNT, count: totalCount });
 export const setIsFetching = (isFetching) => ({type:FETCHING, isFetching});
+export const setDisabledButton = (isFetchingNew, userId) => ({type:DISABLED, isFetchingNew, userId});
 
 export default UsersReducer;
 //профильпейдж удалил, т.к функция сразу даст что надо
+//setIsFetching - это loader

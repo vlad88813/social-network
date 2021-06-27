@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import React from 'react';
-import { follow, setCurrentPage, setUsers, unfollow, setTotalUsersCount, setIsFetching } from '../../redux/Users-reducer';
+import { follow, setCurrentPage, setUsers, unfollow, setTotalUsersCount, setIsFetching, setDisabledButton } from '../../redux/Users-reducer';
 import UsersRENDER from './UsersRENDER';
 // import PreLoader from '../../assets/img/loader.gif';
 import Loader from '../loader/loader_1';
@@ -19,9 +19,9 @@ class UsersContainer extends React.Component{
             
             userAPI.getUsers(this.props.currentPage, this.props.pageSize).then(data => {
                 
-                this.props.setIsFetching(false);
                 this.props.setUsers(data.items);
                 this.props.setTotalUsersCount(data.totalCount);
+                this.props.setIsFetching(false);
                     
             });
         
@@ -43,10 +43,10 @@ class UsersContainer extends React.Component{
         }
 
     render(){
-//<img src={PreLoader}/>
 
         return <>
-        {this.props.isFetching ? <Loader/> : <UsersRENDER 
+        {this.props.isFetching ? <Loader/> : 
+        <UsersRENDER 
             totalCount = {this.props.totalCount}
             pageSize = {this.props.pageSize}
             currentPage = {this.props.currentPage}
@@ -54,16 +54,11 @@ class UsersContainer extends React.Component{
             users = {this.props.users}
             unfollow = {this.props.unfollow}
             follow = {this.props.follow}
+            setDisabledButton = {this.props.setDisabledButton}
+            disabledButton = {this.props.disabledButton}
+            
              />}
-            {/* <UsersRENDER 
-            totalCount = {this.props.totalCount}
-            pageSize = {this.props.pageSize}
-            currentPage = {this.props.currentPage}
-            onPageChanged = {this.onPageChanged}
-            users = {this.props.users}
-            unfollow = {this.props.unfollow}
-            follow = {this.props.follow}
-             /> */}
+            
         </>
     }
 }
@@ -76,10 +71,11 @@ let mapStateToProps = (state) => {
         pageSize: state.usersPage.pageSize,
         totalCount: state.usersPage.totalCount,
         currentPage: state.usersPage.currentPage,
-        isFetching: state.usersPage.isFetching
+        isFetching: state.usersPage.isFetching,
+        disabledButton: state.usersPage.disabledButton
     }
 }
-
+//опять забыл как раб mapStateToProps
 // let mapDispatchToProps = (dispatch) => {
 //     return {
 //         follow: (userId) => {
@@ -120,6 +116,7 @@ export default connect(mapStateToProps,
     setUsers,
     setCurrentPage,
     setTotalUsersCount,
-    setIsFetching})(UsersContainer);
+    setIsFetching,
+    setDisabledButton})(UsersContainer);
     
 // connect создает контейнер 

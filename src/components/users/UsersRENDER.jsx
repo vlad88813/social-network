@@ -39,29 +39,33 @@ let UsersRENDER = (props) => {
 
 
                         {u.followed
-                        ?<button onClick={() => {
+                        ?<button disabled={props.disabledButton.some(id => id === u.id)} onClick={() => {
                             
+                            props.setDisabledButton(true, u.id)
                             userAPI.deleteUsers(u.id)
-                            .then(resultCode => {
+                                .then(resultCode => {
                                 if (resultCode === 0) {
                                     props.unfollow(u.id)
                                 }
+                                props.setDisabledButton(false, u.id)
                             });
-
+                           
 
                             }}>UnFollow</button>
 
 
-                        :<button onClick={() => {
-                            
-                          
+                        :<button disabled={props.disabledButton.some(id => id === u.id)} onClick={() => {
+                            props.setDisabledButton(true,u.id)
                             userAPI.postUsers(u.id)
+                            
                                     .then(resultCode=> {
                                         if (resultCode === 0) {
                                             props.follow(u.id)
                                         }
+                                        props.setDisabledButton(false,u.id)
                                     });
                             
+
                             }}>Follow</button>}
                        
                        
