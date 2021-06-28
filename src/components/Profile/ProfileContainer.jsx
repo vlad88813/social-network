@@ -1,8 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
-import { userAPI } from '../../api/api';
-import { setUserProfile }  from '../../redux/profile-reducer';
+import { ProfileThunkCreator }  from '../../redux/profile-reducer';
 import Profile from './Profile';
 
 class ProfileContainer extends React.Component {
@@ -14,9 +13,11 @@ class ProfileContainer extends React.Component {
       UserID='2';
     }
       
-    userAPI.getProfileContainer(UserID)
-         .then(data => {
-               this.props.setUserProfile(data) });
+    this.props.ProfileThunkCreator(UserID);
+
+    // userAPI.getProfileContainer(UserID)
+    //      .then(data => {
+    //            this.props.setUserProfile(data) });
   
 }
   
@@ -34,4 +35,4 @@ let mapStateToProps = (state) => ({
 //строка ниже создает еще одну обертку, как connect. а Connect с той оберткой создает еще одну.  2 строки кода, две оберетки. 
 let With_URL_Router = withRouter(ProfileContainer);
 
-export default connect(mapStateToProps,{setUserProfile})(With_URL_Router);
+export default connect(mapStateToProps,{ProfileThunkCreator})(With_URL_Router);

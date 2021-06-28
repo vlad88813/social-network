@@ -1,3 +1,5 @@
+import { userAPI } from "../api/api";
+
 const FOLLOW = 'FOLLOW';
 const UN_FOLLOW = 'UN_FOLLOW';
 const SET_USERS = 'SET_USERS';
@@ -78,5 +80,55 @@ export const setIsFetching = (isFetching) => ({type:FETCHING, isFetching});
 export const setDisabledButton = (isFetchingNew, userId) => ({type:DISABLED, isFetchingNew, userId});
 
 export default UsersReducer;
-//профильпейдж удалил, т.к функция сразу даст что надо
+
 //setIsFetching - это loader
+
+export const getUsersThunkCreator = (currentPage, pageSize) => {
+    
+    return (dispatch) => {
+
+    dispatch(setIsFetching(true));
+            
+            userAPI.getUsers(currentPage, pageSize).then(data => {
+                
+                dispatch(setUsers(data.items));
+                dispatch(setTotalUsersCount(data.totalCount));
+                dispatch(setIsFetching(false));
+                    
+            });
+        }
+}
+
+export const deleteUsersThunkCreator = (userId) => {
+
+    return (dispatch) => {
+
+    dispatch (setDisabledButton(true, userId));
+
+             userAPI.deleteUsers(userId)
+                  .then(resultCode => {
+                     if (resultCode === 0) {
+                    dispatch(unfollow(userId))
+                    }
+                    dispatch (setDisabledButton(false, userId));
+        });
+    }
+}
+
+
+export const postUsersThunkCreator = (userId) => {
+
+    return (dispatch) => {
+
+    dispatch (setDisabledButton(true, userId));
+
+            userAPI.postUsers(userId)
+                 .then(resultCode=> {
+                     if (resultCode === 0) {
+                     dispatch(follow(userId))
+                     }
+                     dispatch(setDisabledButton(false,userId))
+        });
+    }
+}
+

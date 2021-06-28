@@ -2,12 +2,8 @@ import React from 'react';
 import styles from './Users.module.css';
 import userIMG from '../../assets/img/user_logo.jpg';
 import { NavLink } from 'react-router-dom';
-import { userAPI } from '../../api/api';
-
-
 
 // чистая компонента 
-
 
 let UsersRENDER = (props) => {
 
@@ -40,38 +36,15 @@ let UsersRENDER = (props) => {
 
                         {u.followed
                         ?<button disabled={props.disabledButton.some(id => id === u.id)} onClick={() => {
-                            
-                            props.setDisabledButton(true, u.id)
-                            userAPI.deleteUsers(u.id)
-                                .then(resultCode => {
-                                if (resultCode === 0) {
-                                    props.unfollow(u.id)
-                                }
-                                props.setDisabledButton(false, u.id)
-                            });
-                           
-
-                            }}>UnFollow</button>
+                            props.deleteUsersThunkCreator(u.id);
+                        }}>UnFollow</button>
 
 
                         :<button disabled={props.disabledButton.some(id => id === u.id)} onClick={() => {
-                            props.setDisabledButton(true,u.id)
-                            userAPI.postUsers(u.id)
-                            
-                                    .then(resultCode=> {
-                                        if (resultCode === 0) {
-                                            props.follow(u.id)
-                                        }
-                                        props.setDisabledButton(false,u.id)
-                                    });
-                            
+                            props.postUsersThunkCreator(u.id);
 
                             }}>Follow</button>}
                        
-                       
-                       
-                       
-                        {/* <button>Follow</button> */}
                     </div>
                 </span>
                 <span>

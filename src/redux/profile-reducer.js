@@ -1,3 +1,5 @@
+import { userAPI } from "../api/api";
+
 const ADD_POST = 'ADD-POST';
 const UPDATA_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
 const SET_USER_PROFILE = 'SET-USER-PROFILE';
@@ -50,4 +52,17 @@ export const updateNewPostText = (text) =>
 export const setUserProfile = (profile) => ({type: SET_USER_PROFILE, profile});
 
 export default profileReducer;
+
+
+
+export const ProfileThunkCreator = (UserID) => { 
+
+    return (dispatch) => {
+      
+    userAPI.getProfileContainer(UserID)
+        .then(data => {
+      dispatch(setUserProfile(data)) 
+    });
+  }
+}
 //профильпейдж удалил, т.к функция сразу даст что надо
