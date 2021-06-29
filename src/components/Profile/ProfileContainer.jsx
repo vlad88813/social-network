@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router';
+import { Redirect, withRouter } from 'react-router';
 import { ProfileThunkCreator }  from '../../redux/profile-reducer';
 import Profile from './Profile';
 
@@ -19,9 +19,12 @@ class ProfileContainer extends React.Component {
     //      .then(data => {
     //            this.props.setUserProfile(data) });
   
-}
+ }
   
   render() {
+
+    if (!this.props.auth) return <Redirect to= {"/login"}/>
+
     return <Profile {...this.props} profile ={this.props.profile}/>
   }
 };
@@ -29,7 +32,8 @@ class ProfileContainer extends React.Component {
 
 
 let mapStateToProps = (state) => ({
- profile: state.ProfilePage.profile
+ profile: state.ProfilePage.profile,
+ auth: state.auth.isAuth
 });
 
 //строка ниже создает еще одну обертку, как connect. а Connect с той оберткой создает еще одну.  2 строки кода, две оберетки. 

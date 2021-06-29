@@ -123,7 +123,7 @@ export const postUsersThunkCreator = (userId) => {
     dispatch (setDisabledButton(true, userId));
 
             userAPI.postUsers(userId)
-                 .then(resultCode=> {
+                .then(resultCode=> {
                      if (resultCode === 0) {
                      dispatch(follow(userId))
                      }

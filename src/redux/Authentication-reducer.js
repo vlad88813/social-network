@@ -1,3 +1,4 @@
+import { userAPI } from "../api/api";
 
 const SET_USER_DATA = 'SET_USER_DATA';
 
@@ -28,7 +29,19 @@ const AuthenticationReducer = (state = initialState, action) => {
 }
 
 
-
 export const setUserData = (id, email, login) => ({type: SET_USER_DATA, data:{id, email, login}});
 
 export default AuthenticationReducer;
+
+export const AuthenticationThunkCreator = () => {
+    return (dispatch) => {
+        userAPI.getHeaderAuth()
+         .then(data => {
+           
+           if (data.resultCode === 0){
+             let {id, email, login} = data.data;
+               dispatch(setUserData(id, email, login));
+              }
+           });
+    }
+}

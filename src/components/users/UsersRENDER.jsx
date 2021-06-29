@@ -2,6 +2,7 @@ import React from 'react';
 import styles from './Users.module.css';
 import userIMG from '../../assets/img/user_logo.jpg';
 import { NavLink } from 'react-router-dom';
+import YES from '../loader/YES';
 
 // чистая компонента 
 
@@ -43,7 +44,10 @@ let UsersRENDER = (props) => {
                         :<button disabled={props.disabledButton.some(id => id === u.id)} onClick={() => {
                             props.postUsersThunkCreator(u.id);
 
-                            }}>Follow</button>}
+                            }} className ={styles.button_follow}>
+                                <span className = {styles.follow_1}>Follow  <YES/></span><br/>
+                                <span aria-hidden="true" className = {styles.follow_2}> 10+ subscriptions</span>
+                                </button>}
                        
                     </div>
                 </span>

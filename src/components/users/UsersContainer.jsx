@@ -69,7 +69,7 @@ let mapStateToProps = (state) => {
         StateDisabledButton: state.usersPage.disabledButton
     }
 }
-//опять забыл как раб mapStateToProps
+//опять забыл как раб mapStateToProps ---- combne reducer находит все курски стейта по редьюсерам и соединяет их. 
 // let mapDispatchToProps = (dispatch) => {
 //     return {
 //         follow: (userId) => {
