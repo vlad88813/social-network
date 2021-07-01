@@ -4,6 +4,8 @@ import { setCurrentPage, getUsersThunkCreator, deleteUsersThunkCreator, postUser
 import UsersRENDER from './UsersRENDER';
 // import PreLoader from '../../assets/img/loader.gif';
 import Loader from '../loader/loader_1';
+import { AutRedirectComponent } from '../../hoc/AutRedirectComponent';
+import { compose } from 'redux';
 
 
 //так как connect делает контейнер, то мы перекинули и сюда нашу глязную компоненту (классовую) для выполнения запросов
@@ -104,10 +106,26 @@ let mapStateToProps = (state) => {
 //     setIsFetching: isFetchingAC})(UsersContainer);
 //если удалить AC ТО ключ-значение будут совпадать и значит мы можем писать один раз
 
-export default connect(mapStateToProps, 
-    {setCurrentPage,
-    getUsersThunkCreator,
-    deleteUsersThunkCreator,
-    postUsersThunkCreator})(UsersContainer);
+
+// let AutRecirect = AutRedirectComponent(UsersContainer);
+
+
+// export default connect(mapStateToProps, 
+//     {setCurrentPage,
+//     getUsersThunkCreator,
+//     deleteUsersThunkCreator,
+//     postUsersThunkCreator})(AutRecirect);
     
+
+export default compose(
+    connect(mapStateToProps, 
+        {setCurrentPage,
+        getUsersThunkCreator,
+        deleteUsersThunkCreator,
+        postUsersThunkCreator}),
+
+    AutRedirectComponent
+)(UsersContainer);
+
+
 // connect создает контейнер 

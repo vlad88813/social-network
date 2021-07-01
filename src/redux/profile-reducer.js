@@ -65,4 +65,3 @@ export const ProfileThunkCreator = (UserID) => {
     });
   }
 }
-//профильпейдж удалил, т.к функция сразу даст что надо
