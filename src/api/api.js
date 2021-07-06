@@ -30,6 +30,14 @@ export const userAPI = {
     getProfileContainer (UserID) {
         return instance.get(`profile/`+ UserID)
             .then(response => response.data)
+    },
+    getStatus (UserID) {
+        return instance.get(`profile/status/` + UserID)
+            .then(response => response.data)
+    },
+    upDateStatus (status){
+        return instance.put(`profile/status`, {status: status})
+            // .then(response => response.data)
     }
     }
 

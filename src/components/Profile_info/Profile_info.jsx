@@ -18,7 +18,7 @@ const Profile_Info = (props) => {
     </div> */}
   <div className={profile_inf_style.item}>
     <img src={props.profile.photos.small!= null ? props.profile.photos.small : userIMG} className={profile_inf_style.userPhoto}/>
-    <ProfileStatus status={'hello'}/>
+    <ProfileStatus  status = {props.status} upDateStatus = {props.upDateStatus}/>
     <div>FullName- {props.profile.fullName}</div>
     <div>GitHub- {props.profile.contacts.github}</div>
     <div>instagram- {props.profile.contacts.instagram}</div>
