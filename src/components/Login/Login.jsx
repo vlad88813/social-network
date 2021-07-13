@@ -14,9 +14,18 @@ const Login = (props) => {
             rememberMe: false,
 
         }}
+        onSubmit={() => {
+
+            setTimeout(() => {
+   
+              alert('hi-hi');
+   
+            }, 1000);
+        }}
         >
-            {() => (
+            {({}) => (
         <Form onSubmit={props.handleSubmit}>
+            {/* onSubmit={props.handleSubmit} ОТПРАВЛЯЕТ ДАННЫЕ С ФОРМЫ В URL */}
             <div>
                 <Field placeholder='login' name='login' component='input'/>
             </div>
@@ -27,7 +36,7 @@ const Login = (props) => {
                 <Field  component='input' name='rememberMe' type='checkbox'/> remember me
             </div>
             <div>
-                <button>login</button> 
+                <button type='submit' > login </button> 
             </div>
         </Form>
             )}
