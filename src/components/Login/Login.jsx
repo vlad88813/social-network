@@ -1,23 +1,41 @@
 import React from 'react';
 import { Formik,Form, Field, ErrorMessage  } from 'formik';
 import * as yup from 'yup';
+import { LoginAPI } from '../../redux/Authentication-reducer';
+import { connect } from 'react-redux';
+import { Redirect } from 'react-router';
 
 
 const Login = (props) => {
 
     let schema = yup.object().shape({
-        login:yup.string().required('Обязательно').matches(/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,'Ведите ваш e-mail').min(5, 'Должно быть минимум 5 символов').max(15, 'Максимум 15 символов'),
-        password:yup.string().required('Обязательно').matches(/^[0-9]+$/, "Должно быть числом").min(5, 'Должно быть минимум 5 символов').max(15, 'Максимум 15 символов'),
-        confirmPassword:yup.string().oneOf([yup.ref('password')],'Пароли должны совпадать!').required('Обязательно').matches(/^[0-9]+$/, "Должно быть числом").min(5, 'Должно быть минимум 5 символов').max(15, 'Максимум 15 символов'),
+        Email:yup
+        .string()
+        .required('Обязательно')
+        .matches(/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,'Ведите ваш e-mail')
+        .min(5, 'Должно быть минимум 5 символов')
+        .max(39, 'Максимум 39 символов'),
+        password:yup
+        .string()
+        .required('Обязательно')
+        .matches(/^[0-9]+$/, "Должно быть числом")
+        .min(5, 'Должно быть минимум 5 символов')
+        .max(15, 'Максимум 15 символов'),
+        confirmPassword:yup
+        .string()
+        .oneOf([yup.ref('password')],'Пароли должны совпадать!')
+        .required('Обязательно').matches(/^[0-9]+$/, "Должно быть числом")
+        .min(5, 'Должно быть минимум 5 символов')
+        .max(15, 'Максимум 15 символов'),
     })
 
     
     return (
         <Formik
         // onSubmit={onSubmit}
-        // validate={formValidate}
+        // validate={formValidate} 
         initialValues={{
-            login:'',
+            Email:'',
             password:'',
             confirmPassword:'',
             rememberMe: false,
@@ -26,23 +44,27 @@ const Login = (props) => {
         validationSchema={schema}
         // onSubmit={(values)=>{console.log(values)}}
 
-        onSubmit={() => {
+        onSubmit={(formData) => {
 
-            setTimeout(() => {
-              alert('hi-hi');
-            }, 1000);
+            // setTimeout(() => {
+            //   alert('hi-hi');
+            // }, 1000);
+            props.LoginAPI(formData.Email,formData.password, formData.rememberMe)
+
         }}
         >
+            
+
             {({values, errors, touched, handleChange, handleBlur, isValid, handleSubmit, dirty }) => (
-        <Form onSubmit={props.handleSubmit}>
+        <Form >
             {/* onSubmit={props.handleSubmit} ОТПРАВЛЯЕТ ДАННЫЕ С ФОРМЫ В URL */}
             
 
             <div>
-                <label htmlFor={'login'}>User login</label><br/>
-                <Field placeholder='login' name='login' component='input' onChange={handleChange} onBlur={handleBlur} type='string'
+                <label htmlFor={'login'}>User Email</label><br/>
+                <Field placeholder='Email' name='Email' component='input' onChange={handleChange} onBlur={handleBlur} type='string'
                 />
-                {touched.login && errors.login && <p>{errors.login}</p> }
+                {touched.Email && errors.Email && <p>{errors.Email}</p> }
                 {/* old синаксис */}
             </div>
     
@@ -78,7 +100,7 @@ const Login = (props) => {
                 <button 
                 type={'submit'}
                 disabled={!isValid && !dirty} 
-                // onClick= {handleSubmit}
+                onClick= {handleSubmit}
                  > login </button> 
             </div>
         </Form>
@@ -87,24 +109,27 @@ const Login = (props) => {
     )
 }
 
-// const reactFinalForm = ({ form, ...config }) => component => props => (
-//     <Form {...config} {...props} component={component} />
-//   )
 
-// const LoginFinalForm = reactFinalForm({
-//     form: 'Login'
-//   })(Login)
 
-//hoc выше
 
 
 
 const LoginForm = (props) => {
 
+
+    if (props.isAuth){
+        return <Redirect to={"/profile"}/>
+    }
+
     return <div>
         <h1>Login</h1>
-        <Login/>
+        <Login LoginAPI={props.LoginAPI}/>
     </div>
 }
 
-export default LoginForm;
+const mapStateToProps= (state) => ({
+isAuth:state.auth.isAuth
+});
+
+
+export default connect (mapStateToProps,{LoginAPI})(LoginForm);

@@ -1,4 +1,4 @@
-import { userAPI } from "../api/api";
+import { authAPI, userAPI } from "../api/api";
 
 const SET_USER_DATA = 'SET_USER_DATA';
 
@@ -29,9 +29,8 @@ const AuthenticationReducer = (state = initialState, action) => {
 }
 
 
-export const setUserData = (id, email, login) => ({type: SET_USER_DATA, data:{id, email, login}});
+export const setUserData = (id, email, login, isAuth) => ({type: SET_USER_DATA, data:{id, email, login, isAuth}});
 
-export default AuthenticationReducer;
 
 export const AuthenticationThunkCreator = () => {
     return (dispatch) => {
@@ -40,8 +39,38 @@ export const AuthenticationThunkCreator = () => {
            
            if (data.resultCode === 0){
              let {id, email, login} = data.data;
-               dispatch(setUserData(id, email, login));
+               dispatch(setUserData(id, email, login, true));
               }
            });
     }
 }
+
+
+export const LoginAPI = (email,password, rememberMe) => (dispatch) => {
+    
+    authAPI.login(email, password, rememberMe)
+        .then(response => {
+            if(response.data.resultCode === 0){
+                dispatch(AuthenticationThunkCreator())
+            }
+        })   
+}
+
+
+export const Logout = () => (dispatch) => {
+    authAPI.logout()
+        .then(response => {
+            if(response.data.resultCode === 0){
+                dispatch(setUserData(null, null, null, false))
+            }
+        })   
+}
+
+
+
+
+
+
+
+
+export default AuthenticationReducer;
