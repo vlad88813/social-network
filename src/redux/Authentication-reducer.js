@@ -46,13 +46,18 @@ export const AuthenticationThunkCreator = () => {
 }
 
 
-export const LoginAPI = (email,password, rememberMe) => (dispatch) => {
+export const LoginAPI = (email,password, rememberMe, setSubmitting, setFieldError, setStatus) => (dispatch) => {
     
     authAPI.login(email, password, rememberMe)
         .then(response => {
             if(response.data.resultCode === 0){
                 dispatch(AuthenticationThunkCreator())
             }
+            else {
+                setStatus(response.data.messages)
+                //response.data.messages  тут лежит строка "Incorrect anti-bot symbols" либо  'Incorrect Email or Password'
+            }
+
         })   
 }
 

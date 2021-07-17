@@ -1,5 +1,5 @@
 import React from 'react';
-import { Formik,Form, Field, ErrorMessage  } from 'formik';
+import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as yup from 'yup';
 import { LoginAPI } from '../../redux/Authentication-reducer';
 import { connect } from 'react-redux';
@@ -44,21 +44,27 @@ const Login = (props) => {
         validationSchema={schema}
         // onSubmit={(values)=>{console.log(values)}}
 
-        onSubmit={(formData) => {
+        onSubmit={(formData,{setSubmitting, setFieldError, setStatus}) => {
 
             // setTimeout(() => {
             //   alert('hi-hi');
             // }, 1000);
-            props.LoginAPI(formData.Email,formData.password, formData.rememberMe)
-
+            props.LoginAPI(formData.Email,formData.password, formData.rememberMe,
+                setSubmitting, setFieldError, setStatus);
+                
+                setSubmitting(false);
+                
         }}
         >
             
 
-            {({values, errors, touched, handleChange, handleBlur, isValid, handleSubmit, dirty }) => (
+            {({values, errors, touched, handleChange, handleBlur, isValid, handleSubmit, dirty, status }) => (
         <Form >
             {/* onSubmit={props.handleSubmit} ОТПРАВЛЯЕТ ДАННЫЕ С ФОРМЫ В URL */}
-            
+            <div>
+                 {status}
+            </div>
+                
 
             <div>
                 <label htmlFor={'login'}>User Email</label><br/>
