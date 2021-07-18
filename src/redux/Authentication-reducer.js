@@ -19,7 +19,7 @@ const AuthenticationReducer = (state = initialState, action) => {
             return {
                 ...state, 
                 ...action.data,
-                isAuth: true
+                
             }
         }
         default: 
@@ -70,12 +70,6 @@ export const Logout = () => (dispatch) => {
             }
         })   
 }
-
-
-
-
-
-
 
 
 export default AuthenticationReducer;

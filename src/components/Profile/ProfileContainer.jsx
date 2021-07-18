@@ -39,14 +39,7 @@ class ProfileContainer extends React.Component {
 // теперь это делает отдельная компонента
 
 
-
-
-
-
-
 // let AutRecirect = AutRedirectComponent(ProfileContainer);
-
-
 
 
 let mapStateToProps = (state) => ({
