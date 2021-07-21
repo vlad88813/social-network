@@ -6,6 +6,19 @@ import { connect } from 'react-redux';
 import { Redirect } from 'react-router';
 
 
+// Material-UI
+import Button from '@material-ui/core/Button';
+import "@fontsource/roboto";// не использую!
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import TextField from "@material-ui/core/TextField";
+import Checkbox, { CheckboxProps } from '@material-ui/core/Checkbox';
+
+
+// css
+import login_style from "./LoginForm.module.css";
+
+
+
 const Login = (props) => {
 
     let schema = yup.object().shape({
@@ -64,14 +77,13 @@ const Login = (props) => {
             <div>
                  {status}
             </div>
-                
 
             <div>
-                <label htmlFor={'login'}>User Email</label><br/>
+                <label htmlFor={'login'}>User Email</label><br/> 
                 <Field placeholder='Email' name='Email' component='input' onChange={handleChange} onBlur={handleBlur} type='string'
                 />
-                {touched.Email && errors.Email && <p>{errors.Email}</p> }
-                {/* old синаксис */}
+                {touched.Email && errors.Email && <p>{errors.Email}</p>}
+                {/* old синаксис  */}
             </div>
     
 
@@ -89,7 +101,7 @@ const Login = (props) => {
             
 
             <div>
-                <label htmlFor={'login'}>User Password</label><br/>
+                <label htmlFor={'login'}>Confirm Password</label><br/>
                 <Field  placeholder='Confirm password' name='confirmPassword' component='input'  type='password'
                 />
                 <ErrorMessage name='confirmPassword' />
@@ -98,16 +110,25 @@ const Login = (props) => {
 
 
             <div>
-                <Field  component='input' name='rememberMe' type='checkbox'/> remember me
-            </div>
-            <div>
-            
+                <FormControlLabel control= {
+          <Checkbox
+            // checked={state.checkedB}
+            // onChange={handleChange}
+            // name="checkedB"
+            color="primary"
+          />
+        }
+        label="Remember me"
+      />
 
-                <button 
+
+            </div>
+            <div >
+                <Button variant="contained" color="primary" 
                 type={'submit'}
                 disabled={!isValid && !dirty} 
                 onClick= {handleSubmit}
-                 > login </button> 
+                 > login </Button> 
             </div>
         </Form>
             )}
@@ -122,13 +143,13 @@ const Login = (props) => {
 
 const LoginForm = (props) => {
 
-
     if (props.isAuth){
         return <Redirect to={"/profile"}/>
     }
 
-    return <div>
-        <h1>Login</h1>
+    return <div className={login_style.login}> 
+        <div>Login</div>
+        <p/>
         <Login LoginAPI={props.LoginAPI}/>
     </div>
 }
@@ -139,3 +160,7 @@ isAuth:state.auth.isAuth
 
 
 export default connect (mapStateToProps,{LoginAPI})(LoginForm);
+
+
+
+// напиши отдельную комоненту на материал юай и на хуках, + валидация и так, чтобы можно было подключить эту комоненту и старую 
