@@ -16,6 +16,7 @@ import Checkbox, { CheckboxProps } from '@material-ui/core/Checkbox';
 
 // css
 import login_style from "./LoginForm.module.css";
+import MediaCard from './advertising';
 
 
 
@@ -133,6 +134,7 @@ const Login = (props) => {
         </Form>
             )}
         </Formik>
+        
     )
 }
 
@@ -150,7 +152,11 @@ const LoginForm = (props) => {
     return <div className={login_style.login}> 
         <div>Login</div>
         <p/>
-        <Login LoginAPI={props.LoginAPI}/>
+        <div class={login_style.grid}>
+        <div class={login_style.position1}><Login LoginAPI={props.LoginAPI}/></div>
+        <div class={login_style.position2}><MediaCard/></div>
+        </div>
+        
     </div>
 }
 
