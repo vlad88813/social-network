@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as yup from 'yup';
 import { LoginAPI } from '../../redux/Authentication-reducer';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router';
+import MediaCard from './advertising';
 
 
 // Material-UI
@@ -16,7 +17,7 @@ import Checkbox, { CheckboxProps } from '@material-ui/core/Checkbox';
 
 // css
 import login_style from "./LoginForm.module.css";
-import MediaCard from './advertising';
+
 
 
 
@@ -43,7 +44,7 @@ const Login = (props) => {
         .max(15, 'Максимум 15 символов'),
     })
 
-    
+
     return (
         <Formik
         // onSubmit={onSubmit}
@@ -79,6 +80,7 @@ const Login = (props) => {
                  {status}
             </div>
 
+            <p/>
             <div>
                 <label htmlFor={'login'}>User Email</label><br/> 
                 <Field placeholder='Email' name='Email' component='input' onChange={handleChange} onBlur={handleBlur} type='string'
@@ -88,7 +90,7 @@ const Login = (props) => {
             </div>
     
 
-
+            <p/>
             <div>
                 <label htmlFor={'login'}>User Password</label><br/>
                 <Field  placeholder='Password' name='password' component='input'  type='password'
@@ -100,7 +102,7 @@ const Login = (props) => {
         
 
             
-
+            <p/>
             <div>
                 <label htmlFor={'login'}>Confirm Password</label><br/>
                 <Field  placeholder='Confirm password' name='confirmPassword' component='input'  type='password'
@@ -109,7 +111,7 @@ const Login = (props) => {
             </div>
 
 
-
+            <p/>
             <div>
                 <FormControlLabel control= {
           <Checkbox
@@ -124,6 +126,7 @@ const Login = (props) => {
 
 
             </div>
+            <p/>
             <div >
                 <Button variant="contained" color="primary" 
                 type={'submit'}
@@ -141,12 +144,21 @@ const Login = (props) => {
 
 
 
-
-
 const LoginForm = (props) => {
 
+    const [state, setState] = useState(true);
+
+    
     if (props.isAuth){
         return <Redirect to={"/profile"}/>
+    }
+    
+
+    const func_Buy_Later = () => {
+        setState(false)
+        setTimeout(() => {
+        setState(true) || alert('it\'s time to buy a parrot!')
+            }, 5000);
     }
 
     return <div className={login_style.login}> 
@@ -154,9 +166,11 @@ const LoginForm = (props) => {
         <p/>
         <div class={login_style.grid}>
         <div class={login_style.position1}><Login LoginAPI={props.LoginAPI}/></div>
-        <div class={login_style.position2}><MediaCard/></div>
+        {state && <div class={login_style.position2}><MediaCard func_Buy_Later={func_Buy_Later}/></div>}
         </div>
-        
+   
+
+
     </div>
 }
 

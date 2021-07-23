@@ -10,10 +10,24 @@ import UsersContainer from './components/users/UsersContainer';
 import ProfileContainer from './components/Profile/ProfileContainer';
 import HeaderContainer from './components/Header/Header-Container';
 import Login from './components/Login/Login';
+import { connect } from 'react-redux';
+import { initializesAppThunkCreator } from './redux/App-reducer';
+import Loader from './components/loader/loader_1';
 
 
 
-const App = (props) => {
+class App extends React.Component {
+
+  componentDidMount(){
+    this.props.initializesAppThunkCreator();  
+  }
+  
+
+  render(){
+    if (!this.props.initializes)
+    return <Loader/>
+
+
   return (
     <BrowserRouter>
     <div className='app-wrapper'>
@@ -23,11 +37,11 @@ const App = (props) => {
 
         <Route 
         path='/profile/:userID?' 
-        render= {() => <ProfileContainer store={props.store}/>}/>
+        render= {() => <ProfileContainer/>}/>
 
         <Route 
         path= '/dialogs' 
-        render= {() => <DialogsContainer store = {props.store}/>}/>
+        render= {() => <DialogsContainer/>}/>
 
         <Route path='/users' render={()=><UsersContainer/>}/>
 
@@ -43,5 +57,12 @@ const App = (props) => {
     </BrowserRouter>
   );
 }
+}
 
-export default App;
+const mapStateToProps= (state) => ({
+  initializes: state.app.initializes
+})
+
+
+
+export default connect(mapStateToProps,{initializesAppThunkCreator})(App);

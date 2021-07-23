@@ -26,13 +26,8 @@ let buy_parrot = () => {
      }, 1000);
 }
 
-let buy_later_parrot = () => {
-    setTimeout(() => {
-       alert('it\'s time to buy a parrot!');
-       }, 9000);
-  }
 
-export default function MediaCard() {
+export default function MediaCard(props) {
   const classes = useStyles();
 
   return (
@@ -56,7 +51,7 @@ export default function MediaCard() {
         <Button size="small" color="primary" onClick= {buy_parrot}>
         BUY
         </Button>
-        <Button size="small" color="secondary" onClick={buy_later_parrot}>
+        <Button size="small" color="secondary" onClick={props.func_Buy_Later}>
         BUY LATER
         </Button>
       </CardActions>

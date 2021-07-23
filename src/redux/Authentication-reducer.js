@@ -34,7 +34,8 @@ export const setUserData = (id, email, login, isAuth) => ({type: SET_USER_DATA, 
 
 export const AuthenticationThunkCreator = () => {
     return (dispatch) => {
-        userAPI.getHeaderAuth()
+       return  userAPI.getHeaderAuth()
+       //return нужен для того чтобы получить ответ, который я добавлю в переменную промис который я использую в app-reducer
          .then(data => {
            
            if (data.resultCode === 0){
