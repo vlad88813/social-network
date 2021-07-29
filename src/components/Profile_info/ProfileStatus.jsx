@@ -2,7 +2,7 @@ import React from 'react';
 
 class ProfileStatus extends React.Component {
    
-    
+    //localState может быть только в классовой компоненте либо использовать хуки
     state = {
       editMode: false,
       status: this.props.status   

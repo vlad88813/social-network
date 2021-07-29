@@ -4,6 +4,7 @@ import YES from '../loader/YES';
 import profile_inf_style from './Profile_info.module.css';
 import userIMG from '../../assets/img/user_logo.jpg';
 import ProfileStatus from './ProfileStatus';
+import ProfileStatusHooks from './ProfileStatusCopyHooks';
 
 const Profile_Info = (props) => {
 
@@ -18,14 +19,15 @@ const Profile_Info = (props) => {
     </div> */}
   <div className={profile_inf_style.item}>
     <img src={props.profile.photos.small!= null ? props.profile.photos.small : userIMG} className={profile_inf_style.userPhoto}/>
-    <ProfileStatus  status = {props.status} upDateStatus = {props.upDateStatus}/>
+    {/* <ProfileStatus  status = {props.status} upDateStatus = {props.upDateStatus}/> */}
+    <ProfileStatusHooks status = {props.status} upDateStatus = {props.upDateStatus} />
     <div>FullName- {props.profile.fullName}</div>
     <div>GitHub- {props.profile.contacts.github}</div>
     <div>instagram- {props.profile.contacts.instagram}</div>
     <div>lookingForAJob- {props.profile.contacts.lookingForAJob != true ? 'yes' : 'not'}</div>
     <div>lookingForAJob- {props.profile.contacts.lookingForAJob != true ? <YES/> : <span>&#10005;</span>}</div>
 
-    ava + description
+
   </div>
 
   </div>

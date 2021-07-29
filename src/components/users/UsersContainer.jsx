@@ -6,7 +6,7 @@ import UsersRENDER from './UsersRENDER';
 import Loader from '../loader/loader_1';
 import { AutRedirectComponent } from '../../hoc/AutRedirectComponent';
 import { compose } from 'redux';
-import { getTotalCount, getUsers, getDisabledButton, getIsFetching, getCurrentPage, getPageSize } from '../../redux/user-selectors';
+import { getTotalCount, getUsers, getDisabledButton, getIsFetching, getCurrentPage, getPageSize, getUsersSuperSelector } from '../../redux/user-selectors';
 
 
 //так как connect делает контейнер, то мы перекинули и сюда нашу глязную компоненту (классовую) для выполнения запросов
@@ -60,10 +60,11 @@ class UsersContainer extends React.Component{
     }
 }
 
-
+//ниже mapStateToProps использует селекторы 
 
 let mapStateToProps = (state) => {
     return {
+         // users: getUsersSuperSelector(state),
         users: getUsers(state),
         pageSize: getPageSize(state),
         totalCount: getTotalCount(state),
@@ -72,7 +73,7 @@ let mapStateToProps = (state) => {
         StateDisabledButton: getDisabledButton(state)
     }
 }
-//опять забыл как раб mapStateToProps ---- combne reducer находит все курски стейта по редьюсерам и соединяет их. 
+// как раб mapStateToProps ---- combne reducer находит все курски стейта по редьюсерам и соединяет их. 
 // let mapDispatchToProps = (dispatch) => {
 //     return {
 //         follow: (userId) => {
