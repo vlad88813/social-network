@@ -9,23 +9,6 @@ import Paginator from '../Paginator/Paginator'
 
 let UsersRENDER = (props) => {
 
-    // let portionSize = 10
-    // let pageCount = Math.ceil(props.totalCount / props.pageSize)
-    
-    // let pages = [];
-  
-    // for (let i=1; i <= Math.ceil(pageCount); i++){
-    //     pages.push(i);
-    // }
-
-
-    // let portionCount = Math.ceil(pageCount / portionSize);
-  
-    // let [portionNumber,setPortionNumber] = useState(1);
-    // useEffect(()=>setPortionNumber(Math.ceil(props.currentPage/portionSize)), [props.currentPage]);  // при уходе со страницы юзеров на другую и при повторном возвращении на неё, пагинация подгоняется под текущую страницу юзеров, которая записана в userReducer
-    // let leftPortionPageNumber = (portionNumber - 1) * portionSize + 1;
-    // let rightPortionPageNumber = portionNumber * portionSize; 
-
         return <div>
         <Paginator 
         totalCount={props.totalCount}
@@ -34,12 +17,6 @@ let UsersRENDER = (props) => {
         onPageChanged={props.onPageChanged}
          />
 
-        {/* <div>
-            {pages.map(p=>{
-                return <span className={props.currentPage === p && styles.selectedPage}
-                onClick={ (e) => {props.onPageChanged(p)}}>{p}</span>
-            })}
-        </div> */}
         {
             props.users.map(u => <div key={u.id}>
                 <span>
@@ -49,7 +26,6 @@ let UsersRENDER = (props) => {
                     </NavLink>
                     </div>
                     <div>
-
 
                         {u.followed
                         ?<button disabled={props.disabledButton.some(id => id === u.id)} onClick={() => {
