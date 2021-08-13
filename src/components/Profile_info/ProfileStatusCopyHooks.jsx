@@ -16,24 +16,20 @@ const ProfileStatusHooks = (props) => {
             setStatus(props.status)
         }, [props.status]);
     
-
     // EditModeActiv = () => {
     //     this.setState({
     //         editMode:true
     //     })
     // }
 
-
     const activeEditMode = () => {
         setEditMode(true)
     }
-
 
     const deactiveEditMode = () => {
         setEditMode(false)
         props.upDateStatus(status)
     }
-
 
     // EditModeFalseDeactiv = () => {
     //     this.setState({
@@ -63,6 +59,5 @@ const ProfileStatusHooks = (props) => {
     </div>)
     
     }
-
 
 export default ProfileStatusHooks;

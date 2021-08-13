@@ -47,7 +47,7 @@ export const AuthenticationThunkCreator = () => {
 }
 
 
-export const LoginAPI = (email,password, rememberMe, setSubmitting, setFieldError, setStatus) => (dispatch) => {
+export const LoginAPI = (email,password, rememberMe, setStatus) => (dispatch) => {
     
     authAPI.login(email, password, rememberMe)
         .then(response => {

@@ -5,6 +5,7 @@ width: 100px;
 
 .selectedPage {
 font-weight:800;
+/* border: solid; */
 }
 
 .button_follow {
@@ -13,6 +14,14 @@ font-weight:800;
     line-height: 20px;
     cursor: pointer;
     
+}
+
+.pageNumber {
+    color:red;
+    border: 0.5mm ridge;
+    border-color: white;
+
+    /* border-radius: 5px; */
 }
 
 .follow_1 {
