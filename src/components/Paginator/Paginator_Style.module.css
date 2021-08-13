@@ -1,0 +1,13 @@
+.selectedPage {
+    font-weight:800;
+    /* border: solid; */
+    }
+    
+    
+.pageNumber {
+    color:rgb(134, 248, 3);
+    border: 0.5mm ridge;
+    border-color: white;
+
+    /* border-radius: 5px; */
+}
