@@ -5,12 +5,16 @@ import { NavLink } from 'react-router-dom';
 import YES from '../loader/YES';
 import Paginator from '../Paginator/Paginator'
 import PaginationMaterialUI from '../Paginator/Paginator_MaterialUI';
+import Loader_2 from '../loader/Loader_2';
 
 // чистая компонента 
 
 let UsersRENDER = (props) => {
 
         return <div>
+            
+            {props.isFetching ? <Loader_2/> : null}
+            
             <PaginationMaterialUI
             totalCount={props.totalCount}
             pageSize={props.pageSize}
@@ -27,7 +31,8 @@ let UsersRENDER = (props) => {
         currentPage={props.currentPage}
         onPageChanged={props.onPageChanged}
          />
-
+         
+        
         {
             props.users.map(u => <div key={u.id}>
                 <span>

@@ -16,13 +16,13 @@ font-weight:800;
     
 }
 
-.pageNumber {
+/* .pageNumber {
     color:red;
     border: 0.5mm ridge;
     border-color: white;
 
     /* border-radius: 5px; */
-}
+/* } */ 
 
 .follow_1 {
     font-size:larger;

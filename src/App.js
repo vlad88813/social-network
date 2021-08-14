@@ -33,8 +33,9 @@ class App extends React.Component {
     <div className='app-wrapper'>
       <HeaderContainer />
       <Navbar />
+      
       <div className='app-wrapper-content'>
-
+  
         <Route 
         path='/profile/:userID?' 
         render= {() => <ProfileContainer/>}/>
@@ -49,9 +50,7 @@ class App extends React.Component {
         <Route path='/music' component={()=><Music />}/>
         <Route path='/settings' component={()=><Setings />}/>
         <Route path='/login' component={()=><Login/>}/>
-
         
- 
       </div>
     </div>
     </BrowserRouter>
