@@ -1,15 +1,26 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import styles from './Users.module.css';
 import userIMG from '../../assets/img/user_logo.jpg';
 import { NavLink } from 'react-router-dom';
 import YES from '../loader/YES';
 import Paginator from '../Paginator/Paginator'
+import PaginationMaterialUI from '../Paginator/Paginator_MaterialUI';
 
 // чистая компонента 
 
 let UsersRENDER = (props) => {
 
         return <div>
+            <PaginationMaterialUI
+            totalCount={props.totalCount}
+            pageSize={props.pageSize}
+            currentPage={props.currentPage}
+            onPageChanged={props.onPageChanged}
+            isFetching={props.isFetching}
+            />
+            
+            <br/>
+
         <Paginator 
         totalCount={props.totalCount}
         pageSize={props.pageSize}

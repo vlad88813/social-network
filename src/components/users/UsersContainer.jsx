@@ -43,7 +43,7 @@ class UsersContainer extends React.Component{
     render(){
 
         return <>
-        {this.props.isFetching ? <Loader/> : 
+        {/* {this.props.isFetching ? <Loader/> :  */}
         <UsersRENDER 
             users = {this.props.users}
             pageSize = {this.props.pageSize}
@@ -53,9 +53,11 @@ class UsersContainer extends React.Component{
             disabledButton = {this.props.StateDisabledButton}
             deleteUsersThunkCreator = {this.props.deleteUsersThunkCreator}
             postUsersThunkCreator = {this.props.postUsersThunkCreator}
+            isFetching = {this.props.isFetching}
             
-             />}
+             />
             
+            {/* } */}
         </>
     }
 }

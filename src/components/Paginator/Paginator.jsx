@@ -22,7 +22,7 @@ let Paginator = (props) => {
 
     return <div>
     {portionNumber > 1 &&
-    <button onClick={()=> {setPortionNumber(portionNumber-1) }}> pred </button>}
+    <button onClick={()=> {setPortionNumber(portionNumber-1) }}> Previous </button>}
     {pages
     .filter(p => p >= leftPortionPageNumber && p <= rightPortionPageNumber)
     .map((p) => {

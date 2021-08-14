@@ -14,7 +14,8 @@
 
 .app-wrapper-content {
 grid-area: c;
-background-color: indigo;
+background-color: indigo
+/* background:linear-gradient(45deg, rgb(216, 205, 104), rgb(49, 49, 53)); */
 }
 
 .App {
