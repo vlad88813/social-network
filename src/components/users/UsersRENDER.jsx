@@ -23,7 +23,7 @@ let UsersRENDER = (props) => {
             isFetching={props.isFetching}
             />
             
-            <br/>
+            {/* <br/> я сделал отступ в материал с paddingBottom: theme.spacing(2)*/}
 
         <Paginator 
         totalCount={props.totalCount}
@@ -31,7 +31,8 @@ let UsersRENDER = (props) => {
         currentPage={props.currentPage}
         onPageChanged={props.onPageChanged}
          />
-         
+
+        <br/> 
         
         {
             props.users.map(u => <div key={u.id}>

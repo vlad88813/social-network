@@ -10,7 +10,7 @@ return <div className={s.l}>
     <span className={s.loader_item}></span>
     <span className={s.loader_item}></span>
     </div>
-    <p className={s.loader}>loading</p>
+    <p className={s.loading}>loading</p>
 </div>
 
 }

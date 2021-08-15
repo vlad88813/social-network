@@ -7,12 +7,12 @@
     /* z-index: 1; */
 }
 
-.loader{
-    color:black;
+.loading{
+    color:rgb(151, 146, 146);
     position: absolute;
     left: 30%;
     top: 50%;
-    font-family: Impact, fantasy;
+    font-family: Arial, sans-serif;
     font-size: xx-large;
 }
 

@@ -8,7 +8,9 @@ import Loader_2 from '../loader/Loader_2';
 const useStyles = makeStyles((theme) => ({
   root: {
     '& > *': {
-      marginTop: theme.spacing(0), //отступ от верхнего края, loader_2 его не мог закрасить 
+      marginTop: theme.spacing(0), //отступ от верхнего края, loader_2 его не мог закрасить. "/br не срабатывает перед компонентой" 
+      paddingBottom: theme.spacing(4), //отступ от нижнего края, loader_2 его закрашивает
+      // ключи важно какие, брал из справочник css
     },
   },
 }));
