@@ -62,7 +62,7 @@ const UsersReducer = (state = initialState, action) => {
             return {...state, 
                 disabledButton: action.isFetchingNew 
             ? [...state.disabledButton, action.userId]
-            : state.disabledButton.filter(id => id != action.userId)
+            : state.disabledButton.filter(id => id !== action.userId)
             }
         }
         default: 
