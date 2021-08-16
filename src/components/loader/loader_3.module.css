@@ -2,13 +2,13 @@
   .loading_String{
     color:rgb(177, 80, 80);
     position: fixed;
-    top: 22%;
+    top: 33%;
     left: 49.9%;
     font-family: Arial, sans-serif;
     font-size: x-large;
   }
   .middle {
-    top: 15%;
+    top: 20%;
     left: 50%;
     /* transform: translate(-50%, -50%); */
     position: fixed;

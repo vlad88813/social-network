@@ -8,7 +8,6 @@ const Music = (props) => {
      <div className={Music_style.text}>
        Music
     </div>
-    <br/>
     <div>
        <AudioPlayer_Material/>
    </div>
