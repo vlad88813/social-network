@@ -14,13 +14,13 @@ import { connect } from 'react-redux';
 import { initializesAppThunkCreator } from './redux/App-reducer';
 import Loader from './components/loader/loader_1';
 import Loader_3 from './components/loader/loader_3';
+import ErrorBoundary from './ErrorBoundary';
 
 //так мы загружаем компоненты только по нажатию на них, а не сразу при загрузке всего прокета
 //Компонент с ленивой загрузкой должен рендериться внутри компонента Suspense
 const News = React.lazy(() => import('./components/News/News'));
 const Music = React.lazy(() => import('./components/Music/Music'));
 const Setings = React.lazy(() => import('./components/Setings/Setings'));
-
 
 
 class App extends React.Component {
@@ -52,13 +52,14 @@ class App extends React.Component {
         render= {() => <DialogsContainer/>}/>
 
         <Route path='/users' render={()=><UsersContainer/>}/>
-
-
+    
+      <ErrorBoundary> 
       <Suspense fallback={<Loader_3/>}>
         <Route path='/news' render= {()=><News />}/>
         <Route path='/music' component={()=><Music />}/>
         <Route path='/settings' component={()=><Setings />}/>
       </Suspense> 
+      </ErrorBoundary>
 
         <Route path='/login' component={()=><Login/>}/>
      
@@ -77,3 +78,5 @@ const mapStateToProps= (state) => ({
 
 
 export default connect(mapStateToProps,{initializesAppThunkCreator})(App);
+
+// <ErrorBoundary> - это предохранитель для обработки ошибок.

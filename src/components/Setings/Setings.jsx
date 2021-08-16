@@ -4,6 +4,8 @@ import Setings_style from'./setings.module.css'
 
 
 const Setings = (props) => {
+    // throw new Error('произошла ошибка');
+    //строка выше нужна для того чтобы проверить работу предохранителя ErrorBoundary
  return (
      <div className={Setings_style.text}>
         Settings
