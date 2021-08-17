@@ -1,0 +1,1 @@
+{"version":3,"sources":["webpack://src/components/Music/player.module.css","webpack://src/components/Music/music.module.css"],"names":[],"mappings":"AAAA,wBACI,cAAe,CACf,OAAQ,CACR,UACJ,CCJA,mBACI,UACJ","file":"4.5e0ca6ad.chunk.css","sourcesContent":[".position {\r\n    position: fixed;\r\n    top: 15%;\r\n    left: 49.9%;\r\n}",".text {\r\n    color:magenta\r\n}"]}

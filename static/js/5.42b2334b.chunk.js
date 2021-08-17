@@ -1,0 +1,2 @@
+(this["webpackJsonpreact-1"]=this["webpackJsonpreact-1"]||[]).push([[5],{358:function(t,e,s){t.exports={text:"news_text__qNUui"}},400:function(t,e,s){"use strict";s.r(e);s(0);var n=s(358),c=s.n(n),a=s(1);e.default=function(t){return Object(a.jsx)("div",{className:c.a.text,children:"News"})}}}]);
+//# sourceMappingURL=5.42b2334b.chunk.js.map
