@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import {  withRouter } from 'react-router';
 import { compose } from 'redux';
 import { AutRedirectComponent } from '../../hoc/AutRedirectComponent';
-import { GetStatusThunkCreator, ProfileThunkCreator, UpDateStatusThunkCreator }  from '../../redux/profile-reducer';
+import { GetStatusThunkCreator, ProfileThunkCreator, UpDateStatusThunkCreator, savePhoto }  from '../../redux/profile-reducer';
 import Profile from './Profile';
 
 class ProfileContainer extends React.Component {
@@ -27,7 +27,13 @@ class ProfileContainer extends React.Component {
   
   render() {
 
-    return <Profile {...this.props} profile ={this.props.profile} status ={this.props.status} upDateStatus = {this.props.UpDateStatusThunkCreator}/>
+    return <Profile {...this.props}
+     profile ={this.props.profile} 
+     status ={this.props.status} 
+     upDateStatus = {this.props.UpDateStatusThunkCreator}
+     isOwner= {!this.props.match.params.userID} //параметр создаем тут, он определяет есть ли id после profile/ 
+     savePhoto={this.props.savePhoto} // функция которой передается аватарка загруженная
+     />
   }
 };
 
@@ -56,7 +62,7 @@ let mapStateToProps = (state) => ({
 
 
 export default compose(
-  connect(mapStateToProps,{ProfileThunkCreator, GetStatusThunkCreator, UpDateStatusThunkCreator}),
+  connect(mapStateToProps,{ProfileThunkCreator, GetStatusThunkCreator, UpDateStatusThunkCreator,savePhoto}),
   withRouter,
   AutRedirectComponent
   

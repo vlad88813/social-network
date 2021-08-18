@@ -16,6 +16,18 @@ const Profile_Info = (props) => {
  }
  else {
   //src={u.photos.small != null ? u.photos.small: userIMG}
+
+
+
+//ниже мы достаем выбранную картинку из инпута e.target.files[0](синтаксис инпута)
+const onMainPhotosSelected = (e) => {
+  if (e.target.files.length){
+    props.savePhoto(e.target.files[0])
+  } 
+}
+
+
+
   return  <div>
     {/* <div>
         <img src='https://moya-planeta.ru/upload/images/xl/12/74/1274272b44a29b045a4466d1cdf2ab79.jpg'/>
@@ -23,6 +35,9 @@ const Profile_Info = (props) => {
   <div className={profile_inf_style.item}>
     <img src={props.profile.photos.small!= null ? props.profile.photos.small : userIMG} className={profile_inf_style.userPhoto}/>
     {/* <ProfileStatus  status = {props.status} upDateStatus = {props.upDateStatus}/> */}
+    
+    {props.isOwner && <input type={"file"} onChange={onMainPhotosSelected}/>}
+
     <ProfileStatusHooks status = {props.status} upDateStatus = {props.upDateStatus} />
     <div>FullName- {props.profile.fullName}</div>
     <div>GitHub- {props.profile.contacts.github}</div>
