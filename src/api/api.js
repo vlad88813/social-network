@@ -38,8 +38,31 @@ export const userAPI = {
     upDateStatus (status){
         return instance.put(`profile/status`, {status: status})
              .then(response => response.data)
+    },
+
+    // {  userId: 17796,
+    //     lookingForAJob: true,
+    // lookingForAJobDescription: 'YYYEEESS',
+    // fullName: 'VLAD88813',
+    //     contacts: 
+    //     {  github:status_Git,
+    //         vk: 'null',
+    //         facebook: 'null',
+    //         instagram: 'null',
+    //         twitter: 'null',
+    //         website: 'null',
+    //         youtube: 'null',
+    //         mainLink: 'null'
+    // }
+    // } 
+
+    upDateGitHub (status_Git){
+        
+        return instance.put(`profile`, {contacts: {github:status_Git}})
+            .then(console.log({contacts: {github:status_Git}}))
     }
-    }
+}
+         
 
 export const authAPI = {
  login(email, password, rememberMe = true){
