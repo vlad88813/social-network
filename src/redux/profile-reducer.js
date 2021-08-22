@@ -7,6 +7,7 @@ const SET_STATUS = 'SET-STATUS';
 const SAVE_PHOTO = 'SAVE_PHOTO';
 
 let initialState =  {
+
     postData: [
       { id: 1, message: 'hi, how are you?', likeCount: 12 },
       { id: 2, message: 'It s my first post', likeCount: 11 },
@@ -39,6 +40,7 @@ const profileReducer = (state = initialState, action) => {
             return stateCopy;
          }
         case SET_USER_PROFILE: {
+          
           return {...stateCopy, profile: action.profile};
          }
 
@@ -46,7 +48,7 @@ const profileReducer = (state = initialState, action) => {
           return {...stateCopy, status: action.status}
         }
         case SAVE_PHOTO: {
-          debugger
+          
           return {...stateCopy, profile: {...state.profile, photos:action.file}};
         }
         default: 
@@ -113,6 +115,7 @@ export const UpDateStatusThunkCreator = (status) => {
 //6. type изменяет initialState  (profile: {...state.profile, photos:action.file}) 
 //7. initialState попадает в combineReducer и дальше работает redux
 //8.  а он уже  mapStateToProps перекидывает куски state кому надо
+
 export const savePhoto = (file) =>  async (dispatch) => {
   let response = await userAPI.putPhoto(file);
 

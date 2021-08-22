@@ -61,9 +61,7 @@ const Login = (props) => {
 
         onSubmit={(formData,{setSubmitting, setFieldError, setStatus}) => {
 
-            // setTimeout(() => {
-            //   alert('hi-hi');
-            // }, 1000);
+          
             props.LoginAPI(formData.Email,formData.password, formData.rememberMe,
                 setSubmitting, setFieldError, setStatus);
                 

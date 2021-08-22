@@ -10,7 +10,7 @@ import { userAPI } from '../../api/api';
 
 
 const Profile_Info = (props) => {
-  console.log(props)
+  
  if (!props.profile) {
    return <Loader/>
  }
@@ -42,7 +42,16 @@ const onMainPhotosSelected = (e) => {
     <div>FullName- {props.profile.fullName}</div>
     <div>GitHub- {props.profile.contacts.github}</div>
     {/* <div>instagram- {props.profile.contacts.instagram}</div>  */}
-    <div>insta- <ProfileGitHubHooks contacts = {props.profile.contacts} upDateGitHub = {userAPI.upDateGitHub}/> </div>
+    <div>insta- <ProfileGitHubHooks profile={props.profile} contacts = {props.profile.contacts} upDateGitHub = {userAPI.upDateGitHub}/> </div>
+
+
+
+    <div>{Object.keys(props.profile.contacts).map(key=> {
+      return <Contact key={key} contactTitle={key} contactValue={props.profile.contacts[key]} />
+    })}</div>
+
+
+
     <div>lookingForAJob- {props.profile.contacts.lookingForAJob != true ? 'yes' : 'not'}</div>
     <div>lookingForAJob- {props.profile.contacts.lookingForAJob != true ? <YES/> : <span>&#10005;</span>}</div>
     
@@ -52,4 +61,9 @@ const onMainPhotosSelected = (e) => {
   </div>
 };
 }
+
+const Contact = ({contactTitle, contactValue}) => {
+  return <div>{contactTitle}:{contactValue}</div>
+}
+
 export default Profile_Info;

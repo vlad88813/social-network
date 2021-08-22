@@ -38,6 +38,7 @@ export const userAPI = {
     upDateStatus (status){
         return instance.put(`profile/status`, {status: status})
              .then(response => response.data)
+             
     },
     //ниже нюансы работы с фото и api
     putPhoto (photoFile){
@@ -66,10 +67,28 @@ export const userAPI = {
     // }
     // } 
 
-    upDateGitHub (status_Git){
-        
-        return instance.put(`profile`, {contacts: {github:status_Git}})
-            .then(console.log({contacts: {github:status_Git}}))
+    upDateGitHub (status_Git, profile){
+    debugger
+        return instance.put(`profile`,  {
+            
+            userId: profile.userId,
+            lookingForAJob: profile.lookingForAJob,
+            lookingForAJobDescription: profile.lookingForAJobDescription, 
+            fullName: profile.fullName,
+            contacts: {
+                github: status_Git,
+                vk: profile.contacts.vk,
+                facebook: profile.contacts.facebook,
+                instagram: profile.contacts.instagram,
+                twitter: profile.contacts.twitter,
+                website: profile.contacts.website,
+                youtube: profile.contacts.youtube,
+                mainLink: profile.contacts.mainLink,
+            },
+           
+    
+    } )
+            .then(response => console.log(response.data.resultCode))
     }
 }
          
